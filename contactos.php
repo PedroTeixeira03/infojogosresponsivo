@@ -27,6 +27,9 @@ session_start();
                     </ul>
                      <?php   
                         if (isset($_SESSION['login'])) { 
+                            if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
+                                echo '<a href="carrinho.php"><img src="imagens/cart.png"/></a>';
+                            }
                                 echo '<form action="registar.php" method="post" >
                                 <button class="login_button" type="submit" name="logout">Logout</button>
                                 </form>';

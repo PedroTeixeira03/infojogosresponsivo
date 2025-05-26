@@ -93,7 +93,8 @@ class ligaDados{
 			foreach($inf as $dados){
 				$_SESSION['login'] = true;
 				$_SESSION['loginMsg'] = "<p align='center' style='color: blue;'>Login com sucesso </p>  "; 
-				$_SESSION['nome']=$dados['login'];
+				$_SESSION['user']=$dados['n_utilizador'];
+				$_SESSION['session_id'] = uniqid('sess_', true);
 
 				if($dados['tipoUtilizador']==1)
 				{
@@ -111,7 +112,7 @@ class ligaDados{
 		session_start();
 		unset($_SESSION['login']);
 		unset($_SESSION['loginMsg']);
-		unset($_SESSION['nome']);
+		unset($_SESSION['user']);
 		unset($_SESSION['tipo']);
 		session_unset();
 		session_destroy();
@@ -194,6 +195,41 @@ class ligaDados{
 			header("location: produtos.php");
 		} 
 	}
+
+	function adicionar_carrinho($sessao, $n_produto, $n_user){
+		$stmt = $this->liga->prepare("INSERT INTO carrinho_compra (n_sessao, n_produto, n_user) 
+		VALUES (?, ?, ?)");
 		
+		$stmt->bindValue(1,$sessao);
+		$stmt->bindValue(2,$n_produto);
+		$stmt->bindValue(3,$n_user);
+		
+		if ($stmt->execute()) {
+			header("location: produtos.php");
+		} 
+	}
+
+	function listar_carrinho($sessao){
+
+		$sql = "SELECT * FROM carrinho_compra, produtos WHERE carrinho_compra.n_produto = produtos.n_produto and carrinho_compra.n_sessao = :id ";
+		
+		$stmt = $this->liga->prepare($sql);
+		$stmt->bindParam(':id',$sessao);
+		$stmt->execute();
+
+		return $stmt->fetchAll();
+	}
+
+	function apagar_carrinho($sessao,$id){
+		$stmt = $this->liga->prepare("DELETE FROM carrinho_compra WHERE n_produto = :produto and carrinho_compra.n_sessao = :id ");
+		$stmt->bindParam(':produto',$id);
+		$stmt->bindParam(':id',$sessao);
+		$stmt->execute();
+		
+		$inf = $stmt->fetchAll();
+		
+		header("location: carrinho.php");
+	}
 }
 ?>
+

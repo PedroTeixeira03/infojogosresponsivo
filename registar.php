@@ -86,7 +86,7 @@ if (isset($_POST['inserir'])) {
 
 //Inserir 
 if (isset($_POST['atualizar'])) {
-  echo 'teste';
+
   $marca = $_POST['marcaU'];
   $modelo = $_POST['modeloU'];
   $n_plataforma = $_POST['plataformaU'];
@@ -126,6 +126,7 @@ if (isset($_POST['atualizar'])) {
   }
 }
 
+//Editar produtos
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
   if($_POST['acao'] === 'carregar_edicao'){
     $id = $_POST['id'] ?? null; // Captura o ID do produto
@@ -143,4 +144,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     }
   }
 }
+
+//adicionar ao carrinho de compras
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['adS'])) {
+  $db->adicionar_carrinho($_GET['s'], $_GET['adS'], $_GET['u']);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['apC'])) {
+  $db->apagar_carrinho($_GET['s'], $_GET['apC']);
+}
+
 ?>

@@ -90,6 +90,12 @@ nav form {
     justify-content: flex-end;
 }
 
+nav img{
+  width: 30px;
+  height: 27px;
+  margin-right: 10px;
+}
+
 /* Botão de Login */
 .login_button {
   background-color: transparent;

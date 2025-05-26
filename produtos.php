@@ -29,7 +29,10 @@
           </ul>
             <?php   
             if (isset($_SESSION['login'])) { 
-                    echo '<form action="registar.php" method="post" >
+              if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
+                echo '<a href="carrinho.php"><img src="imagens/cart.png"/></a>';
+              }
+              echo '<form action="registar.php" method="post" >
                     <button class="login_button" type="submit" name="logout">Logout</button>
                     </form>';
             }else{
@@ -69,6 +72,9 @@
                 if($_SESSION['tipo'] == 1) {
                 echo "<th align='center'>Apagar</th><th align='center'>Atualizar</th>";
                 }
+                if($_SESSION['tipo'] == 2) {
+                echo "<th align='center'>Comprar</th>";
+                }
               }
               ?>
             </tr>
@@ -83,6 +89,11 @@
                   if ($_SESSION['tipo'] == 1) {
                     echo "<td align='center'><a href='registar.php?ap={$registo['n_produto']}'><img src=\"imagens/Delete.png\" width=\"30\" height=\"27\"/></a></td>";
                     echo "<td align='center'><a onclick=\"mostrarEdicao('{$registo['n_produto']}')\"><img src=\"imagens/editar.png\" width=\"30\" height=\"27\"/></td>";
+                  }
+                  if ($_SESSION['tipo'] == 2) {
+                    echo "<td align='center'><a href='registar.php?adS=" . htmlspecialchars($registo['n_produto'], ENT_QUOTES) .
+                     "&u=" . htmlspecialchars($_SESSION['user'], ENT_QUOTES) . "&s=" . htmlspecialchars($_SESSION['session_id'], ENT_QUOTES) .
+                     "'><img src='imagens/shopping.png' width='30' height='27'/></a></td>";
                   }
                   echo "</tr>";
                 }}
@@ -115,37 +126,4 @@
 </body>
 </html>
 
-<script>
-function alternarConteudo() {
-    let div1 = document.getElementById("tabela");
-    let div2 = document.getElementById("editar");
-        div1.classList.remove("conteudo");
-        div1.classList.add("mostrar");
-        div2.classList.remove("mostrar");
-        div2.classList.add("conteudo");
-}
-
-function mostrarEdicao(id) {
-   let div1 = document.getElementById("tabela");
-    let div2 = document.getElementById("editar");
-
-        div1.classList.remove("mostrar");
-        div1.classList.add("conteudo");
-        div2.classList.remove("conteudo");
-        div2.classList.add("mostrar");
-   
-
-  // Enviar o ID para o PHP
-    fetch('registar.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'acao=carregar_edicao&id=' + encodeURIComponent(id)
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("update_form").innerHTML = data; // Insere o conteúdo atualizado
-    })
-    .catch(error => console.error("Erro ao chamar PHP:", error));
-}
-</script>
 <script src="script.js"></script>
