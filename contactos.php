@@ -44,7 +44,10 @@ session_start();
 
       <main>
     <section>
-        <h1>InfoJogos</h1>  
+    <h1>
+      <span class="control">🎮</span>
+      InfoJogos
+    </h1>
         
         <div class="bloco">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1501.7108610132104!2d-8.552041159667821!3d41.16896813018609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24639f4b95e9eb%3A0x8d5bc9d9f00952a!2sEisnt%20-%20Forma%C3%A7%C3%A3o%20e%20Consultoria!5e0!3m2!1spt-PT!2spt!4v1671583598441!5m2!1spt-PT!2spt" 
@@ -60,7 +63,7 @@ session_start();
 </main>
 
         <footer>
-            <h5>Site feito no âmbito da PAF - 2025</h5>
+            <h5>Site feito no âmbito da PAF do curso Programador Informático - 2025</h5>
             <img src="imagens/logos.png" alt="Logos" />
         </footer>
     </div>

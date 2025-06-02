@@ -17,6 +17,7 @@ class ligaDados{
 		}
 	}
 
+	
 	function registo($utilizador, $email, $password1){
 			$tipo = 2;
 			
@@ -229,6 +230,16 @@ class ligaDados{
 		$inf = $stmt->fetchAll();
 		
 		header("location: carrinho.php");
+	}
+
+	function pesquisa($q){
+		$pedido = $q.'%';
+		$sql = "SELECT * FROM TRIM(modelo) WHERE produtos.modelo = :id";
+		
+		$stmt = $this->liga->prepare($sql);
+		$stmt->bindParam(':id',$pedido);
+		$stmt->execute();
+		return $stmt->fetchAll();
 	}
 }
 ?>

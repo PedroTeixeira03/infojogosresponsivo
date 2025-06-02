@@ -154,4 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['apC'])) {
   $db->apagar_carrinho($_GET['s'], $_GET['apC']);
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_POST['pesq'])) {
+  if( !empty($_POST['search'])){
+      $db->pesquisa($_POST['search']);
+  }
+}
+
 ?>

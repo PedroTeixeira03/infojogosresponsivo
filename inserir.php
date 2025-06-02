@@ -70,10 +70,11 @@ session_start();
         </main>
 
         <footer>
-            <h5>Site feito no âmbito da PAF - 2025</h5>
+            <h5>Site feito no âmbito da PAF do curso Programador Informático - 2025</h5>
             <img src="imagens/logos.png" alt="Logos" />
         </footer>
     </div>
+
 </body>
  
 </html>
