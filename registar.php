@@ -154,9 +154,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['apC'])) {
   $db->apagar_carrinho($_GET['s'], $_GET['apC']);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_POST['pesq'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pesq'])) {
+
   if( !empty($_POST['search'])){
-      $db->pesquisa($_POST['search']);
+
+      $dados = $db->pesquisa($_POST['search']);
+      $id = uniqid();
+      apcu_store("dados_$id", $dados, 300); // 5 minutos
+
+      header("location: produtos.php?id=$id");
   }
 }
 

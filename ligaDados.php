@@ -234,7 +234,7 @@ class ligaDados{
 
 	function pesquisa($q){
 		$pedido = $q.'%';
-		$sql = "SELECT * FROM TRIM(modelo) WHERE produtos.modelo = :id";
+		$sql = "SELECT * FROM produtos WHERE TRIM(modelo) LIKE :id";
 		
 		$stmt = $this->liga->prepare($sql);
 		$stmt->bindParam(':id',$pedido);

@@ -2,7 +2,18 @@
     session_start();
     include('ligaDados.php');
     $db = new ligaDados();
-    $dados = $db->listar_produtos(); 
+
+    $id = $_GET['id'] ?? null;
+
+    if ($id && apcu_exists("dados_$id")) {
+      $dados = apcu_fetch("dados_$id");
+      apcu_delete("dados_$id");
+  
+    }
+   else{
+      $dados = $db->listar_produtos(); 
+    } 
+    
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +37,14 @@
                   echo ('<li><a href="inserir.php">Inserir</a></li>');
               } ?>
             <li><a href="contactos.php">Contactos</a></li>
+            <li>
+                            <form method="post" action="registar.php">
+                                <input type="text" name="search" class="search_box" required/>
+                                 <button type="submit" name="pesq" class="search_button">
+                                    <img src="imagens/search.png" alt="Enviar" width="30" height="27">
+                                </button>
+                            </form>
+                        </li>
           </ul>
             <?php   
             if (isset($_SESSION['login'])) { 

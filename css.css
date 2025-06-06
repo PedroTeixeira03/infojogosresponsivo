@@ -96,6 +96,36 @@ nav img{
   margin-right: 10px;
 }
 
+/* Botao da pesquisa*/
+.search_button {
+  width: 29px;
+  height: 29px;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  margin-left: auto; /* Mantém alinhado à direita */
+}
+.search_button img{
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.search_box {
+  background-color: transparent;
+  font-weight: 500;
+  color: #0da8f0;
+  border: 2px solid #0da8f0;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background, color 0.3s;
+  margin-left: auto; /* Mantém alinhado à direita */
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 /* Botão de Login */
 .login_button {
   background-color: transparent;

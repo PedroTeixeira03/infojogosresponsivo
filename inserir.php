@@ -23,6 +23,14 @@ session_start();
                             echo ('<li><a href="inserir.php" class="active">Inserir</a></li>');
                         } ?>
                         <li><a href="contactos.php">Contactos</a></li>
+                        <li>
+                            <form method="post" action="registar.php">
+                                <input type="text" name="search" class="search_box" required/>
+                                 <button type="submit" name="pesq" class="search_button">
+                                    <img src="imagens/search.png" alt="Enviar" width="30" height="27">
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                     <button id="form-open" class="login_button">Login</button>
                 </nav>

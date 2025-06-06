@@ -30,9 +30,9 @@ if (!(isset($_SESSION['login']))) {
                         <li><a href="contactos.php">Contactos</a></li>
                         <li>
                             <form method="post" action="registar.php">
-                                <input type="text" name="search"/>
-                                 <button type="submit" name="pesq">
-                                    <img src="imagens/search.png" alt="Enviar" width="30" height="27">
+                                <input type="text" name="search" class="search_box" required/>
+                                 <button type="submit" name="pesq" class="search_button">
+                                    <img src="imagens/search.png" alt="Enviar">
                                 </button>
                             </form>
                         </li>
